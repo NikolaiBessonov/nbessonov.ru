@@ -1,0 +1,360 @@
+/* =========================================================
+   Soft Minimal — 2024 Readability-First UI
+   - Мягкие цвета и низкая визуальная нагрузка
+   - Контраст достаточный для чтения (WCAG-minded)
+   - Крупная типографика, комфортные отступы
+   - Большие тач-таргеты и видимые фокусы
+   - Поддержка тёмной темы и reduced motion
+   ========================================================= */
+
+/* ---------- Design Tokens ---------- */
+:root {
+    /* Light theme */
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #2a2e34;
+    /* мягкий тёмный */
+    --muted: #6f7785;
+    /* вторичный текст */
+    --border: #e8ecf2;
+    /* тонкие разделители */
+    --accent: #4ea0df;
+    /* спокойный акцент */
+    --chip-bg: #f7f8fb;
+    --chip-br: #e9edf3;
+    --shadow: 0 10px 24px rgba(15, 23, 42, .06);
+
+    /* Radii & spacing */
+    --r-md: 14px;
+    --r-lg: 18px;
+    --space-1: 8px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 20px;
+    --space-5: 28px;
+    --space-6: 40px;
+
+    /* Typography */
+    --font-size: 16px;
+    --lh: 1.7;
+
+    /* Monochrome icons */
+    --icon-filter: grayscale(1) brightness(0);
+}
+
+[data-theme="dark"] {
+    --bg: #0b1016;
+    /* глубокий тёмный */
+    --card: #0f141b;
+    --text: #e5e7eb;
+    /* мягкий светлый */
+    --muted: #a6adbb;
+    /* вторичный в дарке */
+    --border: #1b2330;
+    --accent: #66b4ee;
+    /* акцент для дарка */
+    --chip-bg: #111721;
+    --chip-br: #1b2330;
+    --shadow: 0 10px 24px rgba(0, 0, 0, .50);
+
+    --icon-filter: grayscale(1) invert(1) brightness(1.05);
+}
+
+/* ---------- Global Base ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    color-scheme: light dark;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: var(--font-size)/var(--lh) system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* Контейнер и сетка */
+.container {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 var(--space-3);
+}
+
+.grid {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.grid-3 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width:640px) {
+    .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width:900px) {
+    .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* ---------- Header (липкий, лёгкая «стеклянность») ---------- */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: color-mix(in oklab, var(--bg) 85%, transparent);
+    -webkit-backdrop-filter: saturate(1.05) blur(8px);
+    backdrop-filter: saturate(1.05) blur(8px);
+    border-bottom: 1px solid color-mix(in oklab, var(--border) 85%, transparent);
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: .2px;
+}
+
+/* ---------- Навигация ---------- */
+nav a {
+    color: var(--text);
+    opacity: .78;
+    text-decoration: none;
+    margin: 0 var(--space-2);
+    text-underline-offset: 4px;
+    transition: opacity .2s ease, text-decoration-color .2s ease;
+}
+
+nav a:hover {
+    opacity: .92;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--text) 28%, transparent);
+}
+
+/* ---------- Кнопки ---------- */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 12px 16px;
+    /* ≥44px по высоте */
+    min-height: 44px;
+    border: 1px solid var(--chip-br);
+    background: color-mix(in oklab, var(--card) 90%, transparent);
+    border-radius: var(--r-md);
+    color: var(--text);
+    cursor: pointer;
+    transition: transform .15s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    box-shadow: none;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    background: color-mix(in oklab, var(--chip-bg) 80%, transparent);
+    border-color: color-mix(in oklab, var(--chip-br) 88%, transparent);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, .06);
+}
+
+.btn-ghost {
+    padding: 10px 12px;
+    min-height: 44px;
+    background: color-mix(in oklab, var(--chip-bg) 88%, transparent);
+}
+
+/* Видимые фокусы для клавиатуры */
+:where(a, button).btn:focus-visible,
+:where(a, button):focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--accent) 70%, transparent);
+    outline-offset: 2px;
+    border-radius: calc(var(--r-md) - 2px);
+}
+
+/* ---------- Секции и карточки ---------- */
+.section {
+    scroll-margin-top: 84px;
+    padding: var(--space-6) 0;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    box-shadow: var(--shadow);
+    padding: 24px;
+}
+
+/* ---------- Hero ---------- */
+.hero h1 {
+    font-size: clamp(30px, 5.2vw, 48px);
+    line-height: 1.12;
+    margin: 0 0 6px;
+    font-weight: 750;
+    letter-spacing: -0.01em;
+}
+
+.hero .subtitle {
+    color: var(--muted);
+    font-size: clamp(16px, 2.2vw, 20px);
+    margin-bottom: 14px;
+}
+
+.lead {
+    color: var(--muted);
+    max-width: 70ch;
+    /* комфортная длина строки */
+}
+
+/* ---------- Бейджи (skills) ---------- */
+.badge {
+    display: inline-block;
+    border: 1px solid var(--chip-br);
+    background: var(--chip-bg);
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-size: 14px;
+    color: color-mix(in oklab, var(--text) 82%, transparent);
+    white-space: nowrap;
+}
+
+/* ---------- Типографика ---------- */
+h2 {
+    font-size: clamp(22px, 2.8vw, 30px);
+    margin: 0 0 16px;
+    font-weight: 650;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 0 0 8px;
+    font-weight: 650;
+    color: var(--text);
+}
+
+ul {
+    margin: 0;
+    padding: 0 0 0 18px;
+}
+
+/* ---------- Мета в опыте: company • period ---------- */
+.meta {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin: 2px 0 10px;
+    color: var(--muted);
+    flex-wrap: wrap;
+}
+
+.meta .company {
+    font-weight: 600;
+    color: color-mix(in oklab, var(--text) 78%, transparent);
+}
+
+.meta .dot {
+    opacity: .5;
+}
+
+.meta .period {
+    font-size: 14px;
+    color: var(--muted);
+}
+
+/* ---------- Footer ---------- */
+.footer {
+    color: var(--muted);
+    text-align: center;
+    padding: var(--space-5) 0;
+}
+
+/* ---------- Анимации (ненавязчивые) ---------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: fade .45s ease forwards;
+}
+
+@keyframes fade {
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+.stagger>* {
+    animation-delay: calc(var(--i) * 60ms);
+}
+
+.stagger>* {
+    opacity: 0;
+    transform: translateY(6px);
+    animation: fade .45s ease forwards;
+}
+
+/* Уважение к reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+}
+
+/* ---------- Ссылки ---------- */
+.link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dashed color-mix(in oklab, var(--muted) 55%, transparent);
+}
+
+.link:hover {
+    opacity: .92;
+}
+
+/* Внутри карточек — мягкий акцент */
+.card a:not(.btn) {
+    color: color-mix(in oklab, var(--accent) 86%, var(--text));
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--accent) 60%, transparent);
+    text-underline-offset: 3px;
+    transition: color .2s ease, text-decoration-color .2s ease;
+}
+
+.card a:not(.btn):hover {
+    color: color-mix(in oklab, var(--accent) 92%, var(--text));
+    text-decoration-color: color-mix(in oklab, var(--accent) 74%, transparent);
+}
+
+/* ---------- Иконки ---------- */
+.ico {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    filter: var(--icon-filter);
+}
+
+/* ---------- Мелочи читаемости ---------- */
+::selection {
+    background: color-mix(in oklab, var(--accent) 30%, transparent);
+    color: var(--text);
+}
