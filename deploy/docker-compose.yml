@@ -1,6 +1,6 @@
 services:
   web:
-    image: ghcr.io/nikolaiBessonov/nbessonov.ru:main
+    image: ghcr.io/nikolaibessonov/nbessonov.ru:main
     ports:
       - "127.0.0.1:8080:80"
     restart: unless-stopped
