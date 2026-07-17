@@ -80,6 +80,8 @@ jobs:
           envs: GHCR_TOKEN,GHCR_USER
           script: |
             echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            # One-time migration: the old stack from ~/nbessonov.ru holds port 8080
+            if [ -d ~/nbessonov.ru ]; then (cd ~/nbessonov.ru && docker compose down) || true; fi
             cd ~/cv.bessonov.xyz
             docker compose pull
             docker compose up -d
