@@ -65,7 +65,7 @@ jobs:
           username: ${{ env.DEPLOY_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "deploy/"
-          target: "~/nbessonov.ru"
+          target: "~/cv.bessonov.xyz"
           strip_components: 1
 
       - name: Deploy to server
@@ -80,6 +80,6 @@ jobs:
           envs: GHCR_TOKEN,GHCR_USER
           script: |
             echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
-            cd ~/nbessonov.ru
+            cd ~/cv.bessonov.xyz
             docker compose pull
             docker compose up -d

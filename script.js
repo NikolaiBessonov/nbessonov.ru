@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // ----------- Content and links -----------
     const CONTACTS = {
-        website: "https://nbessonov.ru/",
+        website: "https://cv.bessonov.xyz/",
         email: "nickolaybessonov@gmail.com",                // add your email if needed
         phone: "",                // add your phone number
         location: "Грузия",       // example: "Батуми, Грузия" or "Batumi, Georgia"
