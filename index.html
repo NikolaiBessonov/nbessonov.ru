@@ -11,10 +11,19 @@
 </head>
 
 <body>
-    <header class="header">
-        <div class="container header-inner">
-            <a href="#top" class="brand link" id="brand">Николай Бессонов</a>
-            <nav class="hide-mobile">
+    <div class="page">
+        <aside class="sidebar">
+            <div class="controls">
+                <button class="btn btn-ghost" id="langToggle" aria-label="Toggle language">EN</button>
+                <button class="btn btn-ghost" id="themeToggle" aria-label="Toggle theme">🌙</button>
+            </div>
+
+            <div class="avatar" id="avatar" aria-hidden="true">Н</div>
+            <h1 id="sbName">Николай Бессонов</h1>
+            <div class="role" id="sbRole">DevOps-инженер</div>
+            <div class="status"><span class="dot"></span><span id="statusText">Открыт к предложениям</span></div>
+
+            <nav class="sb-nav" id="sbNav">
                 <a href="#about" data-i18n="nav.about">Обо мне</a>
                 <a href="#skills" data-i18n="nav.skills">Скиллы</a>
                 <a href="#experience" data-i18n="nav.experience">Опыт</a>
@@ -22,78 +31,84 @@
                 <a href="#certs" data-i18n="nav.certs">Сертификаты</a>
                 <a href="#contact" data-i18n="nav.contact">Контакты</a>
             </nav>
-            <div class="controls">
-                <button class="btn btn-ghost" id="langToggle" aria-label="Toggle language">EN</button>
-                <button class="btn btn-ghost" id="themeToggle" aria-label="Toggle theme">🌙</button>
-            </div>
-        </div>
-    </header>
 
-    <main id="top">
-        <section id="about" class="section container hero">
-            <div class="card fade-in">
-                <h1 id="title">Николай Бессонов</h1>
-                <div class="subtitle" id="subtitle">DevOps-инженер</div>
+            <div class="sb-block">
+                <div class="sb-label" id="sbContactsLabel">Контакты</div>
+                <div id="sbContactsList"></div>
+            </div>
+
+            <div class="sb-block">
+                <div class="sb-label" id="sbSkillsLabel">Ключевые навыки</div>
+                <div class="skills-chips" id="sbSkillsChips"></div>
+            </div>
+        </aside>
+
+        <main class="main" id="top">
+            <section id="about" class="section hero fade-in">
+                <div class="eyebrow" id="eyebrow">Обо мне</div>
+                <h2 id="heroHeading">DevOps-инженер</h2>
                 <p class="lead" id="aboutText">
                     Senior DevOps инженер с 5+ годами опыта. Kubernetes (CKA/CKS), GitOps (FluxCD/Argo CD), Cilium,
-                    Helm, Terraform, GitLab CI/TeamCity, Keycloak SSO, Python и Bash. В проде поддерживал и
-                    оптимизировал кластеры K8s (22+ ноды), настраивал Cilium BGP и NodeLocal DNS, строил мониторинг на
-                    Prometheus/Grafana и автоматику деплоев. Фокус — надёжность, безопасность и максимальная
-                    автоматизация.
+                    Helm, Terraform, GitLab CI/TeamCity, Keycloak SSO, Python и Bash.
                 </p>
-                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+                <div class="hero-actions">
                     <button class="btn" id="downloadBtn">
                         <img class="ico" id="downloadIcon" alt="Download" /><span data-i18n="cta">Скачать резюме</span>
                     </button>
-                    <a class="btn" id="websiteLink" href="https://nbessonov.ru/" target="_blank" rel="noreferrer">
-                        <img class="ico" alt="Website" /><span data-i18n="contact.website">Сайт</span>
-                    </a>
-                    <a class="btn" id="telegramLink" href="https://t.me/nbessonov" target="_blank" rel="noreferrer"
-                        style="display:inline-flex">
-                        <img class="ico" alt="Telegram" /><span>Telegram</span>
-                    </a>
-                    <a class="btn" id="githubLink" href="" target="_blank" rel="noreferrer" style="display:none">
-                        <img class="ico" alt="GitHub" /><span>GitHub</span>
-                    </a>
-                    <a class="btn" id="linkedinLink" href="https://ru.linkedin.com/in/nbessonov/ru" target="_blank"
-                        rel="noreferrer" style="display:inline-flex">
-                        <img class="ico" alt="LinkedIn" /><span>LinkedIn</span>
-                    </a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="skills" class="section container">
-            <h2 data-i18n="nav.skills" class="fade-in">Скиллы</h2>
-            <div class="grid grid-3 stagger" id="skillsList"></div>
-        </section>
+            <section id="skills" class="section">
+                <div class="section-head">
+                    <h3 data-i18n="nav.skills">Скиллы</h3>
+                    <div class="rule"></div>
+                </div>
+                <div class="grid grid-3 stagger" id="skillsList"></div>
+            </section>
 
-        <section id="experience" class="section container">
-            <h2 data-i18n="nav.experience" class="fade-in">Опыт</h2>
-            <div class="grid" id="expWrap"></div>
-        </section>
+            <section id="experience" class="section">
+                <div class="section-head">
+                    <h3 data-i18n="nav.experience">Опыт</h3>
+                    <div class="rule"></div>
+                </div>
+                <div class="timeline" id="expWrap"></div>
+            </section>
 
-        <section id="projects" class="section container">
-            <h2 data-i18n="nav.projects" class="fade-in">Проекты</h2>
-            <div class="grid grid-3" id="projectsWrap"></div>
-        </section>
+            <section id="projects" class="section">
+                <div class="section-head">
+                    <h3 data-i18n="nav.projects">Проекты</h3>
+                    <div class="rule"></div>
+                </div>
+                <div class="proj-grid" id="projectsWrap"></div>
+            </section>
 
-        <section id="certs" class="section container">
-            <h2 data-i18n="nav.certs" class="fade-in">Сертификаты</h2>
-            <div style="display:flex;gap:10px;flex-wrap:wrap" id="certsWrap"></div>
-        </section>
+            <section id="certs" class="section">
+                <div class="section-head">
+                    <h3 data-i18n="nav.certs">Сертификаты</h3>
+                    <div class="rule"></div>
+                </div>
+                <div class="certs-grid" id="certsWrap"></div>
+            </section>
 
-        <section id="contact" class="section container">
-            <h2 data-i18n="nav.contact" class="fade-in">Контакты</h2>
-            <div class="card">
-                <p id="contactText" class="lead">Открыт к предложениям и интересным задачам. Свяжитесь удобным способом:
-                </p>
-                <div class="grid grid-3" id="contactsGrid"></div>
-            </div>
-        </section>
-    </main>
+            <section id="contact" class="section">
+                <div class="section-head">
+                    <h3 data-i18n="nav.contact">Контакты</h3>
+                    <div class="rule"></div>
+                </div>
+                <div class="cta-block">
+                    <div>
+                        <h3 id="ctaTitle">Открыт к предложениям</h3>
+                        <p id="contactText">Открыт к предложениям и интересным задачам. Свяжитесь удобным способом:
+                        </p>
+                    </div>
+                    <a class="cta-btn" id="ctaBtn" href="#" target="_blank" rel="noreferrer">Написать мне</a>
+                </div>
+                <div class="grid grid-3" id="contactsGrid" style="margin-top:20px"></div>
+            </section>
 
-    <footer class="footer container" id="footerText">© <span id="year"></span> Николай Бессонов</footer>
+            <footer class="footer" id="footerText">© <span id="year"></span> Николай Бессонов</footer>
+        </main>
+    </div>
 
     <script src="script.js" defer></script>
 </body>

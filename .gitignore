@@ -1,0 +1,8 @@
+# Ruflo / claude-flow working files
+.agents/
+.claude-flow/
+.swarm/
+.mcp.json
+ruvector.db
+skills-lock.json
+.claude/
