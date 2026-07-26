@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav: { about: "Обо мне", skills: "Скиллы", experience: "Опыт", projects: "Проекты", certs: "Сертификаты", education: "Образование", contact: "Контакты" },
             sidebar: { contacts: "Контакты", skills: "Ключевые навыки" },
             about:
-                "Senior DevOps-инженер с 7+ годами опыта. Строит и поддерживает крупные инфраструктурные платформы: Kubernetes, Terraform, AWS, GitLab CI, ArgoCD, мониторинг (Prometheus, Grafana). Опыт работы в финтехе и крупных корпорациях — построение инфраструктурных платформ и SSO-систем. Строит отказоустойчивые системы, автоматизирует CI/CD-пайплайны и тесно работает с командами разработки, чтобы упростить эксплуатацию. Сертифицирован CKA и CKS.",
+                "Senior DevOps-инженер с 7+ годами опыта в построении и эксплуатации крупных инфраструктурных платформ, включая CI/CD для 150+ проектов. Работает с Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI и ArgoCD, участвует в разработке open-source инфраструктурных инструментов. Опыт работы в финтехе и других крупных корпорациях — построение инфраструктурных платформ и SSO-систем с упором на отказоустойчивость и автоматизацию. Сертифицирован CKA и CKS.",
             skills: [
                 "Python, Bash",
                 "Docker",
@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav: { about: "About", skills: "Skills", experience: "Experience", projects: "Projects", certs: "Certifications", education: "Education", contact: "Contacts" },
             sidebar: { contacts: "Contacts", skills: "Key Skills" },
             about:
-                "Senior DevOps Engineer with 7+ years of experience. Builds and runs large infrastructure platforms. Main skills: Kubernetes, Terraform, AWS, GitLab CI, ArgoCD, and monitoring tools (Prometheus, Grafana). Experience in fintech and large enterprise companies, building infrastructure platforms and SSO systems. Builds highly available systems, automates CI/CD pipelines, and works closely with development teams to make operations simpler. CKA and CKS certified.",
+                "Senior DevOps Engineer with 7+ years of experience building and running large infrastructure platforms, including CI/CD for 150+ projects. Works with Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI, and ArgoCD, and contributes to open-source infrastructure tools. Experience in fintech and other large enterprise companies, building infrastructure platforms and SSO systems, with a focus on high availability and automation. CKA and CKS certified.",
             skills: [
                 "Python, Bash",
                 "Docker",
