@@ -126,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             certs: ["Certified Kubernetes Administrator (CKA)", "Certified Kubernetes Security Specialist (CKS)"],
             education: ["Диплом по специальности «Информатика», Красногорский колледж — 2015"],
+            languages: ["Английский — B2", "Русский — родной"],
             contact: {
                 text: "Открыт к предложениям и интересным задачам. Свяжитесь удобным способом:",
                 website: "Сайт", email: "Email", phone: "Телефон", github: "GitHub", linkedin: "LinkedIn", location: "Локация",
@@ -236,6 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             certs: ["Certified Kubernetes Administrator (CKA)", "Certified Kubernetes Security Specialist (CKS)"],
             education: ["Diploma in Computer Science, Krasnogorsk College — 2015"],
+            languages: ["English — B2", "Russian — Native"],
             contact: {
                 text: "Open to opportunities and interesting challenges. Get in touch via:",
                 website: "Website", email: "Email", phone: "Phone", github: "GitHub", linkedin: "LinkedIn", location: "Location",
@@ -526,26 +528,108 @@ document.addEventListener('DOMContentLoaded', () => {
         render(next);
     });
 
-    // Resume download (.txt)
+    // ----------- CV PDF generation (client-side, no backend) -----------
+    // Roboto (pdfmake's default font) substitutes "fi"/"fl" with ligature glyphs whose
+    // ToUnicode mapping drops the second letter, so copied/ATS-parsed text reads
+    // "certifed" instead of "certified". Splitting into separate text runs right at the
+    // f|i or f|l boundary stops the shaper from ever seeing them as one pair to ligate —
+    // pdfmake still lays the runs out with no visible gap.
+    function noLig(str) {
+        const s = String(str);
+        const parts = [];
+        let start = 0;
+        for (let i = 0; i < s.length - 1; i++) {
+            if (s[i] === 'f' && (s[i + 1] === 'i' || s[i + 1] === 'l')) {
+                parts.push(s.slice(start, i + 1));
+                start = i + 1;
+            }
+        }
+        parts.push(s.slice(start));
+        return parts.filter(Boolean);
+    }
+
+    function buildContactLine(lang) {
+        const parts = [];
+        if (CONTACTS.location) parts.push(translateCountry(CONTACTS.location, lang));
+        if (CONTACTS.email) parts.push(CONTACTS.email);
+        if (CONTACTS.phone) parts.push(CONTACTS.phone);
+        if (CONTACTS.linkedin) parts.push(CONTACTS.linkedin.replace(/^https?:\/\//, ''));
+        if (CONTACTS.github) parts.push(CONTACTS.github.replace(/^https?:\/\//, ''));
+        return parts.join('   |   ');
+    }
+
+    function buildCvDocDefinition(lang) {
+        const t = copy[lang];
+        const isRu = lang === 'ru';
+        const accent = '#0b5394';
+        const muted = '#555555';
+        const labels = {
+            summary: isRu ? 'О себе' : 'Professional Summary',
+            skills: isRu ? 'Ключевые навыки' : 'Core Skills',
+            experience: isRu ? 'Опыт работы' : 'Professional Experience',
+            certs: isRu ? 'Сертификаты' : 'Certifications',
+            education: isRu ? 'Образование' : 'Education',
+            languages: isRu ? 'Языки' : 'Languages'
+        };
+        const section = (title) => ({ text: title.toUpperCase(), style: 'section' });
+
+        const experienceBlocks = t.experience.flatMap(e => ([
+            {
+                columns: [
+                    { text: noLig(`${e.role} — ${e.company}`), style: 'jobRole' },
+                    { text: e.period, style: 'jobMeta', alignment: 'right' }
+                ]
+            },
+            { ul: e.bullets.map(b => ({ text: noLig(b) })), style: 'bullet', margin: [0, 4, 0, 10] }
+        ]));
+
+        return {
+            pageSize: 'A4',
+            pageMargins: [40, 36, 40, 36],
+            content: [
+                { text: noLig(t.title), style: 'name' },
+                { text: noLig(t.subtitle), style: 'role' },
+                { text: buildContactLine(lang), style: 'contact', margin: [0, 4, 0, 10] },
+                { canvas: [{ type: 'line', x1: 0, y1: 0, x2: 515, y2: 0, lineWidth: 1, lineColor: '#cccccc' }] },
+
+                section(labels.summary),
+                { text: noLig(t.about), style: 'body' },
+
+                section(labels.skills),
+                { text: noLig(t.skills.join('  •  ')), style: 'body' },
+
+                section(labels.experience),
+                ...experienceBlocks,
+
+                section(labels.certs),
+                { ul: t.certs.map(c => ({ text: noLig(c) })), style: 'bullet' },
+
+                section(labels.education),
+                { ul: t.education.map(ed => ({ text: noLig(ed) })), style: 'bullet', margin: [0, 0, 0, 10] },
+
+                section(labels.languages),
+                { text: noLig(t.languages.join('  •  ')), style: 'body' }
+            ],
+            styles: {
+                name: { fontSize: 22, bold: true, color: '#1a1a1a' },
+                role: { fontSize: 13, color: muted, margin: [0, 2, 0, 0] },
+                contact: { fontSize: 9, color: muted },
+                section: { fontSize: 11, bold: true, color: accent, margin: [0, 14, 0, 6] },
+                jobRole: { fontSize: 10.5, bold: true },
+                jobMeta: { fontSize: 9.5, italics: true, color: muted },
+                bullet: { fontSize: 9.5, lineHeight: 1.15 },
+                body: { fontSize: 9.5, lineHeight: 1.25 }
+            },
+            defaultStyle: { font: 'Roboto', fontSize: 9.5, color: '#222222' }
+        };
+    }
+
     const downloadBtn = q('downloadBtn');
     if (downloadBtn) downloadBtn.addEventListener('click', () => {
         const lang = localStorage.getItem('lang') || 'ru';
-        const t = copy[lang];
-        const lines = [];
-        lines.push(`${t.title} — ${t.subtitle}`);
-        lines.push('');
-        lines.push(t.about);
-        lines.push('');
-        lines.push(lang === 'ru' ? 'Скиллы:' : 'Skills:');
-        t.skills.forEach(s => lines.push(`• ${s}`));
-        lines.push('');
-        lines.push(lang === 'ru' ? 'Опыт:' : 'Experience:');
-        t.experience.forEach(e => { lines.push(`${e.role} (${e.period})`); e.bullets.forEach(b => lines.push(`  - ${b}`)); lines.push('') });
-        const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url; a.download = lang === 'ru' ? 'Rezume_Bessonov.txt' : 'Resume_Bessonov.txt';
-        a.click(); URL.revokeObjectURL(url);
+        if (typeof pdfMake === 'undefined') { console.error('[resume] pdfMake failed to load'); return; }
+        const filename = lang === 'ru' ? 'Nikolai_Bessonov_CV_RU.pdf' : 'Nikolai_Bessonov_CV_EN.pdf';
+        pdfMake.createPdf(buildCvDocDefinition(lang)).download(filename);
     });
 
     // Current year
@@ -568,6 +652,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.assert(copy.ru.projects.length === copy.en.projects.length, 'projects count RU/EN mismatch');
             console.assert(copy.ru.certs.length === copy.en.certs.length, 'certs count RU/EN mismatch');
             console.assert(copy.ru.education.length === copy.en.education.length, 'education count RU/EN mismatch');
+            console.assert(copy.ru.languages.length === copy.en.languages.length, 'languages count RU/EN mismatch');
             // DOM nodes presence (warn only) — new two-column layout
             ['avatar', 'sbName', 'sbRole', 'statusText', 'sbNav', 'sbContactsList', 'sbSkillsChips',
                 'eyebrow', 'heroHeading', 'aboutText', 'skillsList', 'expWrap', 'projectsWrap', 'certsWrap', 'eduWrap',
