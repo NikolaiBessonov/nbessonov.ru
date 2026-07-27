@@ -547,6 +547,24 @@ document.addEventListener('DOMContentLoaded', () => {
         render(next);
     });
 
+    // ----------- Scroll reveal (progressive enhancement) -----------
+    // Sections stay fully visible by default; JS is the only thing that ever
+    // hides them, so no-JS visitors and crawlers see full content either way.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        const revealSections = document.querySelectorAll('.section:not(.hero)');
+        revealSections.forEach(s => s.classList.add('reveal'));
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                    io.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        revealSections.forEach(s => io.observe(s));
+    }
+
     // ----------- CV PDF generation (client-side, no backend) -----------
     // Roboto (pdfmake's default font) substitutes "fi"/"fl" with ligature glyphs whose
     // ToUnicode mapping drops the second letter, so copied/ATS-parsed text reads
