@@ -32,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
             nav: { about: "Обо мне", skills: "Скиллы", experience: "Опыт", projects: "Проекты", certs: "Сертификаты", education: "Образование", contact: "Контакты" },
             sidebar: { contacts: "Контакты", skills: "Ключевые навыки" },
             metaDescription:
-                "Николай Бессонов — Senior DevOps-инженер (CKA/CKS). Kubernetes, Terraform, GitOps, 7+ лет в инфраструктурных платформах для финтеха. Открыт к предложениям.",
+                "Николай Бессонов, Senior DevOps-инженер (CKA/CKS). Kubernetes, Terraform, GitOps, 7+ лет опыта в инфраструктурных платформах для финтеха. Открыт к предложениям.",
             about:
-                "Senior DevOps-инженер с 7+ годами опыта в построении и эксплуатации крупных инфраструктурных платформ, включая CI/CD для 150+ проектов. Работает с Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI и ArgoCD, участвует в разработке open-source инфраструктурных инструментов. Опыт работы в финтехе и других крупных корпорациях — построение инфраструктурных платформ и SSO-систем с упором на отказоустойчивость и автоматизацию. Сертифицирован CKA и CKS.",
+                "Senior DevOps-инженер с 7+ годами опыта в построении и эксплуатации крупных инфраструктурных платформ, включая CI/CD для 150+ проектов. Работает с Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI и ArgoCD, участвует в разработке open-source инфраструктурных инструментов. Опыт работы в финтехе и других крупных корпорациях, включая построение инфраструктурных платформ и SSO-систем с упором на отказоустойчивость и автоматизацию. Сертифицирован CKA и CKS.",
             skills: [
                 "Python, Bash",
                 "Docker",
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "Senior DevOps Engineer (Platform Team)",
                     company: "DATS.Team",
-                    period: "июнь 2025 — н.в.",
+                    period: "июнь 2025 – н.в.",
                     bullets: [
                         "Разворачивал и поддерживал production Kubernetes-кластеры на AWS EC2 и bare-metal серверах (Hetzner, Fornex) с помощью Terraform, используя переиспользуемые модули для AWS, Hetzner и OpenNebula, что сократило время подготовки кластера с ~недели до одного рабочего дня.",
                         "Заменил фиксированный парк on-demand нод на автоскейлинг через Karpenter (on-demand база для HA между зонами, Spot для пиковой нагрузки) и NLB (L4) для входящего трафика, сократив расходы на вычисления более чем на 60% без даунтайма при деплоях.",
@@ -64,14 +64,14 @@ document.addEventListener('DOMContentLoaded', () => {
                         "Повысил безопасность Kubernetes-кластеров, перенеся системные сервисы во внутреннюю сеть и сократив внешнюю поверхность атаки.",
                         "Стандартизировал bare-metal инфраструктуру во всех окружениях и настроил полуавтоматические обновления кластеров, сократив ручную работу и число ошибок.",
                         "Контрибьютил в open-source Terraform-провайдер для Sonatype Nexus (terraform-provider-nexus): добавил поддержку OIDC security-ресурса и data source, исправил баги в CI, тестах и коде провайдера.",
-                        "Повысил стабильность кластеров, добавив StartupCPUBoost для Java-нагрузок с высоким потреблением CPU при старте. Улучшил GitOps-процессы управления инфраструктурой и предложил перенос небольших cloud-native сервисов (Redis, RabbitMQ и др.) с виртуальных машин в Kubernetes — по оценке, это сократит серверный бюджет примерно на 10%.",
+                        "Повысил стабильность кластеров, добавив StartupCPUBoost для Java-нагрузок с высоким потреблением CPU при старте. Улучшил GitOps-процессы управления инфраструктурой и предложил перенос небольших cloud-native сервисов (Redis, RabbitMQ и др.) с виртуальных машин в Kubernetes. По оценке, это сократит серверный бюджет примерно на 10%.",
                         "Участвовал в архитектурных обсуждениях и планировании инфраструктуры в команде платформы из 5-8 человек. Проводил код-ревью и онбордил 4-6 новых инженеров."
                     ]
                 },
                 {
                     role: "DevOps Engineer (CI/CD Team)",
                     company: "DATS.Team",
-                    period: "дек. 2023 — июнь 2025",
+                    period: "дек. 2023 – июнь 2025",
                     bullets: [
                         "Строил и поддерживал CI/CD-пайплайны на GitLab CI и ArgoCD для более чем 150 проектов. Сократил среднее время пайплайна с 15 до 4 минут, перенеся Java-сборки на Jib и улучшив кэширование сборок.",
                         "Создавал и поддерживал общие Helm-чарты для стандартизации деплоя во всех проектах, что упростило патчинг уязвимостей и одновременное обновление множества проектов.",
@@ -83,14 +83,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "DevOps Engineer",
                     company: "T1 Group",
-                    period: "март 2020 — дек. 2023",
+                    period: "март 2020 – дек. 2023",
                     bullets: [
                         "Мигрировал крупную микросервисную платформу финансового сектора (контакт-центр и партнёрские каналы на Kafka) в Kubernetes-окружение на стороне заказчика (Rancher RKE).",
                         "Перенёс git-репозитории, CI/CD-пайплайны (GitLab CI, TeamCity, ArgoCD), контейнерные реестры и хранилище артефактов в рамках этого переезда.",
-                        "Разработал и поддерживал кастомный инструмент автоматизации релизов на Python и Bash. Он строит DAG (граф зависимостей) Java-сборок между репозиториями, формирует релизные манифесты и параллельно собирает 10+ микросервисов — сократив релизный процесс с 1 рабочего дня до ~1 часа.",
-                        "Контейнеризировал приложения для production с помощью Docker, использовал Kaniko для безопасной rootless-сборки образов внутри GitLab CI пайплайнов. Стандартизировал доставку с помощью переиспользуемых Helm-чартов и CI-шаблонов.",
+                        "Разработал и поддерживал кастомный инструмент автоматизации релизов на Python и Bash. Он строит DAG (граф зависимостей) Java-сборок между репозиториями, формирует релизные манифесты и параллельно собирает 10+ микросервисов. Это сокращает релизный процесс с 1 рабочего дня до ~1 часа.",
+                        "Контейнеризировал приложения для production с помощью Docker, использовал Kaniko для безопасной rootless-сборки образов внутри GitLab CI-пайплайнов. Стандартизировал доставку с помощью переиспользуемых Helm-чартов и CI-шаблонов.",
                         "Разворачивал и эксплуатировал платформы корпоративных порталов в Kubernetes через ArgoCD. Платформы построены на микросервисной архитектуре с Keycloak SSO и feature flags на Unleash, плюс автоматизированный бэкап и восстановление PostgreSQL.",
-                        "Построил и эксплуатировал платформу электронного документооборота для ритейла, полностью работающую в Kubernetes, включая базы данных и хранилище — 3-нодовый MongoDB replica set и MinIO S3 с TLS, развёрнутые как Kubernetes workload'ы.",
+                        "Построил и эксплуатировал платформу электронного документооборота для ритейла, полностью работающую в Kubernetes, включая базы данных и хранилище: 3-нодовый MongoDB replica set и MinIO S3 с TLS, развёрнутые как Kubernetes workload'ы.",
                         "Настроил автоматические бэкапы (mongodump и s3cmd через CronJob) в S3 и интегрировал оборудование электронной подписи для подписания документов.",
                         "Разворачивал и поддерживал корпоративные инфраструктурные сервисы: GitLab, GitLab Runner, ArgoCD и OpenSearch. Эти сервисы обеспечивают CI/CD и корпоративные контент/поисковые платформы для нескольких проектов."
                     ]
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "DevOps Engineer",
                     company: "AT Consulting",
-                    period: "июнь 2019 — окт. 2019",
+                    period: "июнь 2019 – окт. 2019",
                     bullets: [
                         "Построил self-service платформу для автоматизации SAN и backup-инфраструктуры банковского клиента, объединив Jenkins-пайплайны, Ansible и Python-скрипты.",
                         "Автоматизировал настройку дисковых массивов (Huawei/IBM), fibre-channel zoning, пересканирование портов и развёртывание backup-агентов на клиентских и master-хостах, заменив ручные операции по администрированию СХД.",
@@ -110,13 +110,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "System Engineer",
                     company: "General Fueller",
-                    period: "нояб. 2017 — март 2020",
+                    period: "нояб. 2017 – март 2020",
                     bullets: [
                         "Автоматизировал сетевую инфраструктуру топливной розничной компании с множеством филиалов с помощью Ansible. Управлял 25+ роутерами Mikrotik (обновления RouterOS, firewall, DHCP, IPsec/L2TP) и VPN-шлюзами (Pritunl, SoftEther), соединяющими 30+ удалённых АЗС с головным офисом.",
                         "Автоматизировал администрирование Windows-рабочих станций и серверов филиалов (160+ рабочих станций, 30+ серверов), используя WinRM/PSRP через SSH bastion и SOCKS5-туннели для площадок без прямого доступа к сети. Это включало установку патчей и обновлений, проверку сервисов и лицензий, управление перезагрузками.",
                         "Автоматизировал обновления баз данных 1С:Предприятие в рознице. Писал скрипты для завершения активных сессий и деплоя конфигурации из центрального репозитория, поддерживая синхронизацию бухгалтерских систем филиалов и топливораздаточных колонок с минимальным простоем.",
                         "Разворачивал и защищал ключевые инфраструктурные сервисы: Chef-сервер, GitLab, мониторинг Zabbix с алертами в Telegram и PostgreSQL. Использовал UFW, fail2ban и автоматизацию Let's Encrypt (certbot) для безопасности.",
-                        "Писал Chef-кукбуки и Ansible-роли для управления более чем 50 Linux-серверами в удалённых филиалах. Писал Python/Bash-скрипты для мониторинга АЗС-оборудования и кастомных приложений, чтобы быстро находить и устранять проблемы."
+                        "Писал Chef-кукбуки и Ansible-роли для управления более чем 50 Linux-серверами в удалённых филиалах. Писал Python/Bash-скрипты для мониторинга АЗС-оборудования и кастомных приложений, чтобы находить и устранять проблемы."
                     ]
                 }
             ],
@@ -127,8 +127,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "DAG-инструмент автоматизации релизов", desc: "Кастомный инструмент на Python/Bash, который резолвит зависимости Java-сборок в граф и параллельно собирает 10+ микросервисов, сократив релиз с 1 дня до ~1 часа." }
             ],
             certs: ["Certified Kubernetes Administrator (CKA)", "Certified Kubernetes Security Specialist (CKS)"],
-            education: ["Диплом по специальности «Информатика», Красногорский колледж — 2015"],
-            languages: ["Английский — B2", "Русский — родной"],
+            education: ["Диплом по специальности «Информатика», Красногорский колледж, 2015"],
+            languages: ["Английский: B2", "Русский: родной"],
             contact: {
                 text: "Открыт к предложениям и интересным задачам. Свяжитесь удобным способом:",
                 website: "Сайт", email: "Email", phone: "Телефон", github: "GitHub", linkedin: "LinkedIn", location: "Локация",
@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
             nav: { about: "About", skills: "Skills", experience: "Experience", projects: "Projects", certs: "Certifications", education: "Education", contact: "Contacts" },
             sidebar: { contacts: "Contacts", skills: "Key Skills" },
             metaDescription:
-                "Nikolai Bessonov — Senior DevOps Engineer (CKA/CKS). Kubernetes, Terraform, GitOps — 7+ years building infra platforms for fintech and enterprise. Open to work.",
+                "Nikolai Bessonov, Senior DevOps Engineer (CKA/CKS). Kubernetes, Terraform, GitOps: 7+ years building infra platforms for fintech and enterprise. Open to work.",
             about:
                 "Senior DevOps Engineer with 7+ years of experience building and running large infrastructure platforms, including CI/CD for 150+ projects. Works with Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI, and ArgoCD, and contributes to open-source infrastructure tools. Experience in fintech and other large enterprise companies, building infrastructure platforms and SSO systems, with a focus on high availability and automation. CKA and CKS certified.",
             skills: [
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "Senior DevOps Engineer (Platform Team)",
                     company: "DATS.Team",
-                    period: "Jun 2025 — Present",
+                    period: "Jun 2025 – Present",
                     bullets: [
                         "Set up and managed production Kubernetes clusters on AWS EC2 and bare-metal servers (Hetzner, Fornex) using Terraform, with reusable modules for AWS, Hetzner, and OpenNebula that cut cluster setup time from about one week to one working day.",
                         "Replaced a fixed fleet of on-demand nodes with Karpenter-managed autoscaling (on-demand baseline for HA across zones, Spot for burst capacity) and NLB (L4) for traffic ingress, cutting compute costs by over 60% with zero downtime during deployments.",
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "DevOps Engineer (CI/CD Team)",
                     company: "DATS.Team",
-                    period: "Dec 2023 — Jun 2025",
+                    period: "Dec 2023 – Jun 2025",
                     bullets: [
                         "Built and managed CI/CD pipelines with GitLab CI and ArgoCD for more than 150 projects. Reduced average pipeline time from 15 to 4 minutes by moving Java builds to Jib and improving build caching.",
                         "Built and maintained shared Helm charts to standardize deployment across all projects, making it easier to patch vulnerabilities and upgrade many projects at once.",
@@ -196,14 +196,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "DevOps Engineer",
                     company: "T1 Group",
-                    period: "Mar 2020 — Dec 2023",
+                    period: "Mar 2020 – Dec 2023",
                     bullets: [
                         "Migrated a large financial-sector microservices platform (contact-center and partner-channel systems using Kafka) to a Kubernetes environment hosted by the customer (Rancher RKE).",
                         "Migrated git repositories, CI/CD pipelines (GitLab CI, TeamCity, ArgoCD), container registries, and artifact storage as part of that move.",
-                        "Built and maintained a custom release-automation tool in Python and Bash. It resolves Java build dependencies across repositories into a DAG (dependency graph), creates release manifests, and runs builds in parallel for 10+ microservices - cutting the release process from 1 business day to about 1 hour.",
+                        "Built and maintained a custom release-automation tool in Python and Bash. It resolves Java build dependencies across repositories into a DAG (dependency graph), creates release manifests, and runs builds in parallel for 10+ microservices. That cuts the release process from 1 business day to about 1 hour.",
                         "Containerized applications for production with Docker, and used Kaniko for secure, rootless image builds inside GitLab CI pipelines. Standardized delivery with reusable Helm charts and CI templates.",
                         "Deployed and operated corporate portal platforms on Kubernetes using ArgoCD. These platforms use a microservices architecture with Keycloak SSO, and Unleash feature flags, plus automated PostgreSQL backup and restore.",
-                        "Built and operated a retail Electronic Document Management platform running fully in Kubernetes, including its databases and storage - a 3-node MongoDB replica set and MinIO S3 storage with TLS, all deployed as Kubernetes workloads.",
+                        "Built and operated a retail Electronic Document Management platform running fully in Kubernetes, including its databases and storage: a 3-node MongoDB replica set and MinIO S3 storage with TLS, all deployed as Kubernetes workloads.",
                         "Automated backups (mongodump and s3cmd via CronJob) to S3, and integrated digital-signature hardware for signing documents.",
                         "Deployed and maintained enterprise infrastructure services: GitLab, GitLab Runner, ArgoCD, and OpenSearch. These services support CI/CD and enterprise content/search platforms across several projects."
                     ]
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "DevOps Engineer",
                     company: "AT Consulting",
-                    period: "Jun 2019 — Oct 2019",
+                    period: "Jun 2019 – Oct 2019",
                     bullets: [
                         "Built a self-service platform to automate SAN and backup infrastructure for a banking client, combining Jenkins pipelines, Ansible, and Python scripts.",
                         "Automated disk array setup (Huawei/IBM), fibre-channel zoning, port rescanning, and backup agent deployment on client and master hosts, replacing manual storage administration steps.",
@@ -223,13 +223,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 {
                     role: "System Engineer",
                     company: "General Fueller",
-                    period: "Nov 2017 — Mar 2020",
+                    period: "Nov 2017 – Mar 2020",
                     bullets: [
                         "Automated network infrastructure for a fuel retail company with many branches, using Ansible. Managed 25+ Mikrotik routers (RouterOS upgrades, firewall, DHCP, IPsec/L2TP) and VPN gateways (Pritunl, SoftEther) that connected 30+ remote gas-station branches to the head office.",
                         "Automated management of Windows workstations and branch servers (160+ workstations, 30+ branch servers), using WinRM/PSRP over SSH bastion and SOCKS5 tunnels for sites without direct network access. This covered patch and update deployment, service and license checks, and reboot management.",
                         "Automated 1C:Enterprise retail database updates. Wrote scripts to close active sessions and deploy configuration from a central repository, keeping branch accounting and fuel-dispenser systems in sync with minimal downtime.",
                         "Deployed and secured core infrastructure services: Chef server, GitLab, Zabbix monitoring with Telegram alerts, and PostgreSQL. Used UFW, fail2ban, and Let's Encrypt (certbot) automation for security.",
-                        "Wrote Chef cookbooks and Ansible roles to manage more than 50 Linux servers across remote branches. Wrote Python/Bash scripts to monitor gas-station equipment and custom applications, to find and fix problems quickly."
+                        "Wrote Chef cookbooks and Ansible roles to manage more than 50 Linux servers across remote branches. Wrote Python/Bash scripts to monitor gas-station equipment and custom applications, to find and fix problems."
                     ]
                 }
             ],
@@ -240,8 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: "DAG-based release automation tool", desc: "Custom Python/Bash tool that resolves Java build dependencies into a DAG and runs parallel builds for 10+ microservices, cutting release time from 1 day to about 1 hour." }
             ],
             certs: ["Certified Kubernetes Administrator (CKA)", "Certified Kubernetes Security Specialist (CKS)"],
-            education: ["Diploma in Computer Science, Krasnogorsk College — 2015"],
-            languages: ["English — B2", "Russian — Native"],
+            education: ["Diploma in Computer Science, Krasnogorsk College, 2015"],
+            languages: ["English: B2", "Russian: Native"],
             contact: {
                 text: "Open to opportunities and interesting challenges. Get in touch via:",
                 website: "Website", email: "Email", phone: "Phone", github: "GitHub", linkedin: "LinkedIn", location: "Location",
@@ -320,7 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
 
         // Document metadata (title, description, Open Graph, Twitter Card)
-        const pageTitle = `${t.title} — ${t.subtitle}`;
+        const pageTitle = `${t.title}, ${t.subtitle}`;
         document.title = pageTitle;
         const setMeta = (selector, attr, value) => {
             const node = document.querySelector(selector);
@@ -613,7 +613,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const experienceBlocks = t.experience.flatMap(e => ([
             {
                 columns: [
-                    { text: noLig(`${e.role} — ${e.company}`), style: 'jobRole' },
+                    { text: noLig(`${e.role}, ${e.company}`), style: 'jobRole' },
                     { text: e.period, style: 'jobMeta', alignment: 'right' }
                 ]
             },
