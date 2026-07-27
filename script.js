@@ -10,16 +10,16 @@ document.addEventListener('DOMContentLoaded', () => {
         telegram: "https://t.me/nbessonov"
     };
 
-    // Icons (Flaticon CDN)
+    // Icons (self-hosted SVG)
     const ICONS = {
-        website: 'https://cdn-icons-png.flaticon.com/512/535/535239.png',
-        email: 'https://cdn-icons-png.flaticon.com/512/561/561127.png',
-        phone: 'https://cdn-icons-png.flaticon.com/512/597/597177.png',
-        github: 'https://cdn-icons-png.flaticon.com/512/2111/2111432.png',
-        linkedin: 'https://cdn-icons-png.flaticon.com/128/1236/1236849.png',
-        location: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
-        telegram: 'https://cdn-icons-png.flaticon.com/128/1946/1946547.png',
-        download: 'https://cdn-icons-png.flaticon.com/512/724/724933.png'
+        website: 'icons/website.svg',
+        email: 'icons/email.svg',
+        phone: 'icons/phone.svg',
+        github: 'icons/github.svg',
+        linkedin: 'icons/linkedin.svg',
+        location: 'icons/location.svg',
+        telegram: 'icons/telegram.svg',
+        download: 'icons/download.svg'
     };
 
     const copy = {
@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
             status: "Открыт к предложениям",
             nav: { about: "Обо мне", skills: "Скиллы", experience: "Опыт", projects: "Проекты", certs: "Сертификаты", education: "Образование", contact: "Контакты" },
             sidebar: { contacts: "Контакты", skills: "Ключевые навыки" },
+            metaDescription:
+                "Николай Бессонов — Senior DevOps-инженер (CKA/CKS). Kubernetes, Terraform, GitOps, 7+ лет в инфраструктурных платформах для финтеха. Открыт к предложениям.",
             about:
                 "Senior DevOps-инженер с 7+ годами опыта в построении и эксплуатации крупных инфраструктурных платформ, включая CI/CD для 150+ проектов. Работает с Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI и ArgoCD, участвует в разработке open-source инфраструктурных инструментов. Опыт работы в финтехе и других крупных корпорациях — построение инфраструктурных платформ и SSO-систем с упором на отказоустойчивость и автоматизацию. Сертифицирован CKA и CKS.",
             skills: [
@@ -142,6 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
             status: "Open to opportunities",
             nav: { about: "About", skills: "Skills", experience: "Experience", projects: "Projects", certs: "Certifications", education: "Education", contact: "Contacts" },
             sidebar: { contacts: "Contacts", skills: "Key Skills" },
+            metaDescription:
+                "Nikolai Bessonov — Senior DevOps Engineer (CKA/CKS). Kubernetes, Terraform, GitOps — 7+ years building infra platforms for fintech and enterprise. Open to work.",
             about:
                 "Senior DevOps Engineer with 7+ years of experience building and running large infrastructure platforms, including CI/CD for 150+ projects. Works with Kubernetes, Terraform, AWS, bare-metal (Talos, Cilium), GitLab CI, and ArgoCD, and contributes to open-source infrastructure tools. Experience in fintech and other large enterprise companies, building infrastructure platforms and SSO systems, with a focus on high availability and automation. CKA and CKS certified.",
             skills: [
@@ -315,6 +319,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const t = copy[lang];
         document.documentElement.lang = lang === 'ru' ? 'ru' : 'en';
 
+        // Document metadata (title, description, Open Graph, Twitter Card)
+        const pageTitle = `${t.title} — ${t.subtitle}`;
+        document.title = pageTitle;
+        const setMeta = (selector, attr, value) => {
+            const node = document.querySelector(selector);
+            if (node) node.setAttribute(attr, value);
+        };
+        setMeta('meta[name="description"]', 'content', t.metaDescription);
+        setMeta('meta[property="og:title"]', 'content', pageTitle);
+        setMeta('meta[property="og:description"]', 'content', t.metaDescription);
+        setMeta('meta[property="og:locale"]', 'content', lang === 'ru' ? 'ru_RU' : 'en_US');
+        setMeta('meta[property="og:locale:alternate"]', 'content', lang === 'ru' ? 'en_US' : 'ru_RU');
+        setMeta('meta[name="twitter:title"]', 'content', pageTitle);
+        setMeta('meta[name="twitter:description"]', 'content', t.metaDescription);
+
         // Sidebar: profile
         const av = q('avatar'); if (av) av.textContent = (t.title || '').trim().charAt(0).toUpperCase();
         setText('#sbName', t.title);
@@ -346,7 +365,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (it.href) { row.href = it.href; row.target = '_blank'; row.rel = 'noreferrer'; }
                 const img = document.createElement('img');
                 img.className = 'ico sb-ico';
-                img.alt = it.key;
+                img.alt = it.label;
                 img.src = ICONS[it.key] || ICONS.website;
                 const span = document.createElement('span');
                 span.textContent = it.label;
@@ -499,7 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (it.href) { a.href = it.href; a.target = '_blank'; a.rel = 'noreferrer'; }
                 const img = document.createElement('img');
                 img.className = 'ico';
-                img.alt = it.key;
+                img.alt = it.label;
                 img.src = ICONS[it.key] || ICONS.website;
                 const span = document.createElement('span');
                 span.textContent = it.label;
